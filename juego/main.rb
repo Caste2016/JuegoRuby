@@ -2,13 +2,13 @@ require 'io/console'
 
 
 # ----------------------------------------- Personajes -------------------------------------
-require_relative 'personaje'
+require_relative 'juego/personaje'
 # ------------------------------------------ Estados --------------------------------------
-require_relative 'estados'
+require_relative 'juego/estados'
 # ------------------------------------------ Hechizos --------------------------------------
-require_relative 'ataques'
+require_relative 'juego/ataques'
 # ------------------------------------------ Menues -----------------------------------------
-require_relative 'menu'
+require_relative 'juego/menu'
 # -------------------------------------------------------------------------------------------
 
 def read_char

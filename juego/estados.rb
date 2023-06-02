@@ -3,7 +3,7 @@ class Estado
     self.class
   end
   def cambiar_estado(ataques, persona, estado)
-    estado = cambiar_rage(persona) if ataques == 5
+    estado = cambiar_rage(persona) if ataques == 5 || estado == Rage
     estado = cambiar_dummy(persona) if ataques == 10 || estado == Dummy
     estado
   end

@@ -12,7 +12,11 @@ class Menu
     @jugador_anterior = nil
     @ajustes = {
       max_hp: 100,
-      max_mp: 100
+      max_mp: 100,
+      daño_base: 10,
+      fancy_bar: false,
+      mostrar_hp_menu: false,
+      events: true
     }
     @menu = MenuAjustes.new(@ajustes)
   end
@@ -175,7 +179,7 @@ class Menu
     @player = (@player + 1) % @jugadores.size # unless !@jugador.nil? && @jugador.efectos.any? { |efectos| efectos.instance_of?( 'clase para no pasar turno' ) }
     @jugador = @jugadores[@player]
     @jugador.hacer_efecto
-    evento
+    evento if @ajustes[:events]
     # @mensaje[0] << "\nAhora es turno de #{@jugador.nombre}" unless @mensaje[0].nil?
     @menu = MenuPrincipal.new
   end
@@ -244,7 +248,11 @@ class MenuAtacar < Menu
 
   def executar
     @opciones.clear
-    @jugadores.each { |enemigo| @opciones.push(enemigo.nombre) }
+    ajustes = @jugadores.first.menu.ajustes
+    if !ajustes[:mostrar_hp_menu]
+      @jugadores.each { |enemigo| @opciones.push(enemigo.nombre) }
+    else @jugadores.each { |enemigo| @opciones.push("#{enemigo.nombre} (#{enemigo.hp}HP)") }
+    end
     @opciones.push('--Atras--')
   end
 
@@ -275,7 +283,11 @@ class MenuLanzarHechizo < Menu
 
   def executar
     @opciones.clear
-    @jugadores.each { |enemigo| @opciones.push(enemigo.nombre) }
+    ajustes = @jugadores.first.menu.ajustes
+    if !ajustes[:mostrar_hp_menu]
+      @jugadores.each { |enemigo| @opciones.push(enemigo.nombre) }
+    else @jugadores.each { |enemigo| @opciones.push("#{enemigo.nombre} (#{enemigo.hp}HP)") }
+    end
     @opciones.push('--Atras--')
   end
 
@@ -415,19 +427,27 @@ class MenuAjustes < Menu
   def accion(seleccion)
     back_button = @opciones.index(@opciones.last)
     if seleccion != back_button
-      puts "Ingresa un numero:"
-      valor = gets.chomp
-      if valor =~ /\A\d+\z/
-        valor = valor.to_i
-        if valor < 10
-          @mensaje = "Valor muy pequeño"
-        else
-          item = @ajustes.keys[seleccion]
-          @ajustes[item] = valor
-          @mensaje = 'Menu para ajustar la partida'
+      if @ajustes.values[seleccion].is_a?(TrueClass) || @ajustes.values[seleccion].is_a?(FalseClass)
+        item = @ajustes.keys[seleccion]
+        if @ajustes[item] == false
+          @ajustes[item] = true
+        else @ajustes[item] = false
         end
-      else @mensaje = "Valor invalido"
-      end
+      elsif @ajustes.values[seleccion].is_a?(Integer)
+        puts "Ingresa un numero:"
+        valor = gets.chomp
+        if valor =~ /\A\d+\z/
+          valor = valor.to_i
+          if valor < 10
+            @mensaje = "Valor muy pequeño"
+          else
+            item = @ajustes.keys[seleccion]
+            @ajustes[item] = valor
+            @mensaje = 'Menu para ajustar la partida'
+          end
+        else @mensaje = "Valor invalido"
+        end
+    end
     else
       return true
     end

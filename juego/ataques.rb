@@ -4,7 +4,7 @@ class Ataque
   end
 
   def desc
-    'Hechizo sin descripción.'
+    'Clase de hechizo sin descripción.'
   end
 
   def cambiar_ataque(ataque, _persona)
@@ -19,22 +19,22 @@ end
 
 class Offensive < Ataque
   def desc
-    "Hechizos para dañar"
+    "Hechizos diseñados para infligir daño a los oponentes."
   end
 end
 class Defensive < Ataque
   def desc
-    "Hechizos de defensa"
+    "Hechizos destinados a proporcionar protección y defensa al lanzador o a sus aliados."
   end
 end
 class Buffs < Ataque
   def desc
-    "Hechizos que causan un beneficio"
+    "Hechizos que otorgan beneficios o mejoras a los lanzadores o a sus aliados."
   end
 end
 class Debuffs < Ataque
   def desc
-    "Hechizos que causan un desbeneficio"
+    "Hechizos que causan desventajas o debilitamientos en los oponentes."
   end
 end
 

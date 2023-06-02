@@ -9,7 +9,7 @@ class Personaje
     @vida_anterior = @hp
     @max_mp = @menu.ajustes[:max_mp]
     @mp = @max_mp
-    @daño_base = 10
+    @daño_base = @menu.ajustes[:daño_base]
     @efectos = [Normal.new]
     @estado = @efectos[0]
     @ataques = 0
@@ -27,11 +27,14 @@ class Personaje
   def barra_vida
     bar_hp = ''
     0.upto(9) do |i|
-      bar_hp += if i < @hp / (@max_hp / 10)
-                  '■' # '♥'
-                else
-                  '-' # '♡'
-                end
+      bar_hp += 
+      
+      if i < @hp / (@max_hp / 10)
+        @menu.ajustes[:fancy_bar] ? '♥' : '■'
+      else
+        @menu.ajustes[:fancy_bar] ? '♡' : '-'
+      end
+      
     end
     bar_hp
   end
@@ -39,11 +42,14 @@ class Personaje
   def barra_mana
     bar_mp = ''
     0.upto(9) do |i|
-      bar_mp += if i < @mp / (@max_mp / 10)
-                  '■' # '★'
-                else
-                  '-' # '☆'
-                end
+      bar_mp +=
+        
+      if i < @mp / (@max_mp / 10)
+        @menu.ajustes[:fancy_bar] ? '★' : '■'
+      else
+        @menu.ajustes[:fancy_bar] ? '☆' : '-'
+      end
+      
     end
     bar_mp
   end
@@ -253,8 +259,6 @@ class Personaje
     daño = @estado.dañar(self, @daño_base).scan(/\d+/)
     daño = daño[0].to_i
     regenerar_hp(daño)
-
-    # enviar("HechizoMalo: #{hechizo_malo}, igual?: #{@tipo_ataque.instance_of?(hechizo_malo)}")
 
     # ------------- celeblo ----------
 

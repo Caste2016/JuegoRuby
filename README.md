@@ -1,19 +1,18 @@
-# Ruby on Replit
+# Game Description
+Welcome to **Stratrgy** - a turn-based role-playing game (RPG) where players engage in epic battles against their enemies.
 
-This is a template to get you started with Ruby on Replit. It's ready to go so you can just hit run and start coding!
+## Features
+- Engaging Battles: Experience thrilling turn-based battles where strategic choices determine the outcome.
+- Character Attributes: Each player has unique attributes, including hit points (HP), magic points (MP), base damage, and attack type.
+- Action Variety: Choose from a range of actions during your turn, including attacking, casting spells, changing spells, resting, and more.
+- Menu-Based System: Navigate through intuitive menus to make choices and explore different options.
+- Diverse Attacks: Unleash powerful melee strikes or cast devastating magic spells, each with distinct effects and costs.
+- States and Effects: Characters can be affected by various states and effects, influencing their abilities and gameplay.
+- Strategic Depth: Plan your moves carefully to exploit enemy weaknesses and maximize your characters' potential.
+- AI-Controlled Bot: Encounter an unpredictable AI-controlled bot character, adding challenge and excitement to battles.
 
-## Running the repl
-
-Simply hit run! You can edit the run command from the `.replit` file.
-
-## Installing packages
-
-To add packages to your repl, we recommend using the Replit packager interface in the left sidebar or using `bundle install` in the shell. Check out the [Bundle docs here](https://bundler.io/guides/getting_started.html).
-
-**Warning: Avoid using `gem install` to add packages.**
-
-Beacuse Ruby repls use [Bundle](https://bundler.io/) under the hood to provide a consistent environment that tracks and installs the exact gems and versions needed, we recommend using `bundle install` instead of `gem install`, which may not work as expected.
-
-## Help
-
-If you need help you might be able to find an answer on our [docs](https://docs.replit.com) page. Feel free to report bugs and give us feedback [here](https://replit.com/support).
+## Usage
+1. Follow the on-screen prompts to navigate menus and make choices.
+2. Select your actions during battles, considering the strategic implications.
+3. Customize your characters and explore different playstyles.
+4. Enjoy the immersive RPG experience and conquer your enemies!
